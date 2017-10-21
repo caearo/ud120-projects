@@ -28,5 +28,18 @@ labels, features = targetFeatureSplit(data)
 
 
 ### it's all yours from here forward!  
+### L17
+from sklearn import tree 
+from sklearn.metrics import accuracy_score
+clf = tree.DecisionTreeClassifier()
+clf.fit(features, labels)
+print "Accuracy of L17(overfit):",accuracy_score(clf.predict(features), labels)
 
+### L28
+from sklearn.cross_validation import train_test_split
+f_train, f_test, l_train, l_test = \
+train_test_split(features, labels, test_size = .3, random_state = 42)
 
+clf = tree.DecisionTreeClassifier()
+clf.fit(f_train, l_train)
+print "Accuracy of L18:",accuracy_score(clf.predict(f_test), l_test)
