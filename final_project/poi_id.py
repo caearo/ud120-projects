@@ -7,6 +7,7 @@ sys.path.append("../tools/")
 from feature_format import featureFormat, targetFeatureSplit
 from tester import dump_classifier_and_data
 
+from pandas import DataFrame
 ### Task 1: Select what features you'll use.
 ### features_list is a list of strings, each of which is a feature name.
 ### The first feature must be "poi".
@@ -16,11 +17,17 @@ features_list = ['poi','salary'] # You will need to use more features
 with open("final_project_dataset.pkl", "r") as data_file:
     data_dict = pickle.load(data_file)
 
+df = DataFrame.from_dict(data_dict)
+print df.describe()
+
 print len(data_dict)
-for keys in data_dict:
-	print keys
-	print data_dict[keys].keys()
-	break
+for key in data_dict:
+	if data_dict[key]["poi"]:
+		print "name:",key
+#	print "feature:"
+#	for feature in data_dict[key].keys():
+#		print "***",feature
+#	break
 
 ### Task 2: Remove outliers
 ### Task 3: Create new feature(s)
